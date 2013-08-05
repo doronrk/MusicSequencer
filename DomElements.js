@@ -44,11 +44,9 @@
   }
 
   var SampleDom = function(sample) {
-	  this.sample = sample;
-	  this.domNode = $("<div class = 'sample_button' fname = '" + this.sample.fname.toString() + "'></div>");
-	  var self = this;
+	  this.domNode = $("<div class = 'sample_button' fname = '" + sample.fname.toString() + "'></div>");
 	  this.domNode.click(function () {
-		  self.sample.play();
+		  sample.play();
 	  })
   }
   SampleDom.width = ButtonDom.width;

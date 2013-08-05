@@ -72,5 +72,3 @@ var Grid = function(numTracks, numBeats){
 		this.draw();
 	}
 }
-
-exports.Grid = Grid;

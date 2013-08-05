@@ -1,7 +1,7 @@
 var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app, {log: false}),
 	fs = require('fs'),
-	Grid = require('./Grid').Grid;
+	JSONReady = require('./JSONReady.js').JSONReady;
 
 app.listen(4000);
 
@@ -18,8 +18,7 @@ function handler (req, res) {
 		}
 	});
 }
-var emptyGrid = new Grid(8, 16);
-var gridJSON = new JSONReady(emptyGrid);
+var gridJSON = new JSONReady();
 var newUser = false;
 
 io.sockets.on('connection', function (socket) {

@@ -7,6 +7,7 @@ var samples = ["horn.mp3", "triangle.mp3", "crash.mp3", "hiHat.mp3", "clap.mp3",
 
 var SampleTrack = function(track, numBeats) {
 	this.on = true;
+	this.retrigger = false;
 	this.track = track;
 	this.numBeats = numBeats;
 	this.sample = new Sample(samples[this.track%8], this);

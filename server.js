@@ -1,6 +1,7 @@
 var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app, {log: false}),
-	fs = require('fs');
+	fs = require('fs'),
+	Grid = require('./Grid').Grid;
 
 app.listen(4000);
 
@@ -17,14 +18,21 @@ function handler (req, res) {
 		}
 	});
 }
+var emptyGrid = new Grid(8, 16);
+var gridJSON = new JSONReady(emptyGrid);
+var newUser = false;
 
 io.sockets.on('connection', function (socket) {
-  socket.on("buttonPress", function (data) {
-  	socket.broadcast.emit("buttonPress", data);
-    console.log(data);
-  });
-  socket.on("clearButton", function (data) {
-  	socket.broadcast.emit("clearButton", data);
-  	console.log("clearButton");
-  })
+	socket.emit("loadGrid", {gridJSON: gridJSON});
+	socket.on("buttonPress", function (data) {
+		socket.broadcast.emit("buttonPress", data);
+		console.log(data);
+	});
+	socket.on("clearButton", function (data) {
+		socket.broadcast.emit("clearButton", data);
+		console.log("clearButton");
+	});
+	socket.on("saveButton", function (data) {
+		gridJSON = data.gridJSON;
+	});
 });

@@ -1,10 +1,10 @@
 var socket;
 $(document).ready(function () {
 	socket = io.connect('http://localhost');
-	var	tracks = 8;
-	var	beats = 16;
-	var grid = new Grid(tracks, beats);
-	grid.draw();
+	// var	tracks = 8;
+	// var	beats = 16;
+	// var grid = new Grid(tracks, beats);
+	// grid.draw();
 	var transport = new Transport(grid);
 	socket.on("buttonPress", function(data) {
 		var track = data.track;
@@ -15,5 +15,8 @@ $(document).ready(function () {
 	})
 	socket.on("clearButton", function(data) {
 		grid.allOff();
+	})
+	socket.on("loadGrid", function(data) {
+		grid.loadJSON(data.gridJSON);
 	})
 });

@@ -15,6 +15,5 @@ Button.prototype.highlight = function(state) {
 Button.prototype.play = function() {
 	if (this.on) {
 		this.sampleTrack.sample.play();
-		console.log(this.track.toString(), this.beat.toString());
 	}
 }

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Music Box Node App</title>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="JSONReady.js"></script>
 	<script src="client.js"></script>
 	<script src="Grid.js"></script>
 	<script src="SampleTrack.js"></script>
@@ -20,5 +21,14 @@
 	<button type="button" id = "stopButton">Stop</button>
 	<button type="button" id = "restartButton">Restart</button>
 	<button type="button" id = "clearButton">Clear</button>
+	<button type="button" id = "saveButton">Save</button>
+	<font color="white">
+		<form action="">
+		bpm: <input type="text" name="bpm"><br>
+		number of tracks: <input type="text" name="numTracks">
+		number of beats: <input type="text" name="numBeats">
+		<input type="submit" value="Submit" id = "submitButton">
+		</form>
+	</font>
 </body>
 </html>

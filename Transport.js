@@ -2,10 +2,11 @@ var Transport = function(grid) {
 	this.startButton = $("#startButton");
 	this.stopButton = $("#stopButton");
 	this.restartButton = $("#restartButton");
+	this.submitButton = $("#submitButton");
 	this.stopButton.hide();
 	this.currentBeat = 0;
 	this.on = false;
-	this.bpm = 120;
+	this.bpm = 280;
 	this.steppingProcess;
 	var self = this;
 	this.startButton.click( function () {
@@ -32,6 +33,9 @@ var Transport = function(grid) {
 		else {
 			grid.highlightBeat(0, true);
 		}
+	})
+	this.submitButton.click( function () {
+		console.log("submitButton clicked");
 	})
 	this.stepper = function () {
 		this.currentBeat = this.currentBeat%grid.numBeats;

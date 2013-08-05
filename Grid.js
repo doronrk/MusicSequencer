@@ -1,14 +1,19 @@
-var Grid = function(numTracks, numBeats){
-	this.numTracks = numTracks;
-	this.numBeats = numBeats;
+var Grid = function(gridJSON){
+	this.numTracks = gridJSON.numTracks;
+	this.numBeats = gridJSON.numBeats;
 	this.domElement = new GridDom(this);
 	this.clearButton = $("#clearButton");
 	this.saveButton = $("#saveButton");
 	this.tracks = [];
-	for (var track = 0; track < numTracks; track++) {
+	for (var track = 0; track < this.numTracks; track++) {
 		var newSampleTrack = new SampleTrack(track, this.numBeats);
 		AppendDoms(this, newSampleTrack);
 		this.tracks.push(newSampleTrack);
+	}
+	for (var track = 0; track < this.numTracks; track++) {
+		for (var beat = 0; beat < this.numBeats; beat++) {
+			this.tracks[track].buttons[beat].on = gridJSON.tracks[track][beat];
+		}
 	}
 	this.draw = function() {
 		this.tracks.forEach(function(track) {
@@ -61,14 +66,4 @@ var Grid = function(numTracks, numBeats){
 		var jReady = new JSONReady(self);
 		socket.emit("saveButton", {gridJSON: jReady});
 	})
-	this.loadJSON = function (gridJSON) {
-		this.numTracks = gridJSON.numTracks;
-		this.numBeats = gridJSON.numBeats;
-		for (var track  = 0; track < this.numTracks; track++) {
-			for (var beat = 0; beat < this.numBeats; beat++) {
-				this.tracks[track].buttons[beat].on = gridJSON.tracks[track].buttons[beat].on;
-			}
-		}
-		this.draw();
-	}
 }

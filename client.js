@@ -1,6 +1,7 @@
 var socket;
 $(document).ready(function () {
 	socket = io.connect('http://localhost');
+	var grid;
 	socket.on("buttonPress", function(data) {
 		var track = data.track;
 		var beat = data.beat;
@@ -12,8 +13,7 @@ $(document).ready(function () {
 		grid.allOff();
 	})
 	socket.on("loadGrid", function(data) {
-		var grid = new Grid(0,0);
-		grid.loadJSON(data.gridJSON);
+		grid = new Grid(data.gridJSON);
 		grid.draw();
 		var transport = new Transport(grid);
 	})

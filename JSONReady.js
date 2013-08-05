@@ -3,6 +3,9 @@
 		this.numTracks = grid ? grid.numTracks : 8;
 		this.numBeats = grid ? grid.numBeats : 16;
 		this.tracks = [];
+		if (grid) {
+			console.log(grid.tracks);
+		}
 		for (var track = 0; track < this.numTracks; track++) {
 			var buttons = [];
 			for (var button = 0; button < this.numBeats; button++) {
@@ -12,10 +15,5 @@
 			this.tracks.push(buttons);
 		}
 	}
-
-	// global.module.exports = JSONReady;
-	// module.exports = JSONReady;
-	// exports.JSONReady = JSONReady;
-
 	exports.JSONReady = JSONReady;
 })(this);

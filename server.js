@@ -18,8 +18,8 @@ function handler (req, res) {
 		}
 	});
 }
+
 var gridJSON = new JSONReady();
-var newUser = false;
 
 io.sockets.on('connection', function (socket) {
 	socket.emit("loadGrid", {gridJSON: gridJSON});

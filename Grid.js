@@ -2,8 +2,7 @@ var Grid = function(gridJSON){
 	this.numTracks = gridJSON.numTracks;
 	this.numBeats = gridJSON.numBeats;
 	this.domElement = new GridDom(this);
-	this.clearButton = $("#clearButton");
-	this.saveButton = $("#saveButton");
+	this.controlElement = new GridControl(this);
 	this.tracks = [];
 	for (var track = 0; track < this.numTracks; track++) {
 		var newSampleTrack = new SampleTrack(track, this.numBeats);
@@ -57,13 +56,4 @@ var Grid = function(gridJSON){
 			button.highlight(false);
 		})
 	}
-	var self = this;
-	this.clearButton.click( function () {
-		socket.emit("clearButton", {});
-		self.allOff();
-	})
-	this.saveButton.click(function () {
-		var jReady = new JSONReady(self);
-		socket.emit("saveButton", {gridJSON: jReady});
-	})
 }

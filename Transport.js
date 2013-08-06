@@ -1,6 +1,9 @@
 ;(function(exports) {
   var Transport = function(grid) {
-	  this.startButton = $("#startButton");
+	  this.startButton = $("#startButton"); // worth moving these buttons to the dom handler
+                                          // try building a generic click binder interface
+                                          // on them for Transport to use
+
 	  this.stopButton = $("#stopButton");
 	  this.restartButton = $("#restartButton");
 	  this.stopButton.hide();

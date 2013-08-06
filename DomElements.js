@@ -20,6 +20,10 @@
 		  socket.emit("buttonPress", {track: self.button.track, beat: self.button.beat})
 		  self.button.flip();
 	  })
+
+    this.getDomNode = function() {
+      return this.domNode;
+    };
   }
   ButtonDom.width = 50;
   ButtonDom.height = 50;
@@ -47,7 +51,11 @@
 	  this.domNode = $("<div class = 'sample_button' fname = '" + sample.fname.toString() + "'></div>");
 	  this.domNode.click(function () {
 		  sample.play();
-	  })
+	  });
+
+    this.getDomNode = function() {
+      return this.domNode;
+    };
   }
   SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
@@ -63,6 +71,10 @@
   var SampleTrackDom = function(sampleTrack) {
 	  this.sampleTrack = sampleTrack;
 	  this.domNode = $("<div class ='sample_track' track = '" + this.sampleTrack.track.toString() + "'></div>");
+
+    this.getDomNode = function() {
+      return this.domNode;
+    };
   }
   SampleTrackDom.prototype.draw = function() {
 	  this.domNode.css({"width" : "" + this.width().toString() + "px"});
@@ -80,6 +92,10 @@
   var GridDom = function(grid) {
 	  this.grid = grid;
 	  this.domNode = $("#grid");
+
+    this.getDomNode = function() {
+      return this.domNode;
+    };
   }
   GridDom.prototype.draw = function() {
 	  this.domNode.css({"width" : "" + this.width().toString() + "px"});

@@ -5,11 +5,9 @@
     	highlight = "2px solid white",
       notHighlight = "2px solid black";
 
-  function appendToDomNode (parent, child) {
-	  var parentDom = parent.domElement.domNode;
-	  var childDom = child.domElement.domNode;
-	  parentDom.append(childDom);
-  }
+  var appendToDom = function(parentDom, childDom) {
+    parentDom.getDomNode().append(childDom.getDomNode());
+  };
 
   var ButtonDom = function(button) {
 	  this.button = button;
@@ -113,5 +111,5 @@
   exports.dom.SampleTrackDom = SampleTrackDom;
   exports.dom.SampleDom = SampleDom;
   exports.dom.GridDom = GridDom;
-  exports.dom.appendToDomNode = appendToDomNode;
+  exports.dom.appendToDom = appendToDom;
 }(this));

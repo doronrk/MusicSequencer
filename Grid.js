@@ -7,7 +7,7 @@
 	  this.tracks = [];
 	  for (var track = 0; track < numTracks; track++) {
 		  var newSampleTrack = new SampleTrack(track, this.numBeats);
-		  dom.appendToDomNode(this, newSampleTrack);
+      dom.appendToDom(this.domElement, newSampleTrack.domElement)
 		  this.tracks.push(newSampleTrack);
 	  }
 	  this.draw = function() {

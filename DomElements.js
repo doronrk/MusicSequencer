@@ -45,8 +45,8 @@
 	  this.getDomNode().css({"border" : color});
   }
 
-  var SampleDom = function(sample) {
-	  var domNode = $("<div class = 'sample_button' fname = '" + sample.fname.toString() + "'></div>");
+  var SampleDom = function(fname) {
+	  var domNode = $("<div class = 'sample_button' fname = '" + fname.toString() + "'></div>");
 	  domNode.click(function () {
 		  sample.play();
 	  });

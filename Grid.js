@@ -16,7 +16,6 @@
 			  track.buttons.forEach(function(button) {
 				  button.domElement.draw();
 			  })
-			  track.domElement.draw();
 		  })
 	  }
 	  this.getBeat = function(beat) {

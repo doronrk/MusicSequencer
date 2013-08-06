@@ -73,14 +73,12 @@
     this.getDomNode = function() {
       return domNode;
     };
-  }
-  SampleTrackDom.prototype.draw = function() {
-	  this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
-	  this.getDomNode().css({"height": "" + this.height().toString() + "px"});
-  }
 
     var width = this.sampleTrack.numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
     var height = ButtonDom.heightSpace;
+
+	  this.getDomNode().css({"width" : "" + width.toString() + "px"});
+	  this.getDomNode().css({"height": "" + height.toString() + "px"});
   }
 
   var GridDom = function() {

@@ -66,7 +66,7 @@
 
 
   var SampleTrackDom = function(track) {
-	  var domNode = $("<div class ='sample_track' track = '" + track.toString() + "'></div>");
+	  var domNode = $("<div class ='sample_track' track = '" + track + "'></div>");
 
     this.getDomNode = function() {
       return domNode;

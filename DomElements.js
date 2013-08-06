@@ -4,6 +4,12 @@ var green = "rgb(0, 128, 0)",
 	highlight = "2px solid white",
 	notHighlight = "2px solid black";
 
+var boxWidth = 50,
+	boxHeight = 50,
+	boxBorder = 2;
+	boxWidthSpace = boxWidth + 2 * boxBorder,
+	boxHeightSpace = boxHeight + 2 * boxBorder;
+
 function AppendDoms (parent, child) {
 	var parentDom = parent.domElement.domNode;
 	var childDom = child.domElement.domNode;
@@ -14,18 +20,13 @@ var ButtonDom = function(button) {
 	this.button = button;
 	this.domNode = $("<div class ='button' track = '" + this.button.track.toString() + "' beat = '" + this.button.beat.toString() + "'></div>");
 }
-ButtonDom.width = 50;
-ButtonDom.height = 50;
-ButtonDom.border = 2;
-ButtonDom.widthSpace = ButtonDom.width + 2 * (ButtonDom.border);
-ButtonDom.heightSpace = ButtonDom.height + 2 * (ButtonDom.border);
 ButtonDom.prototype.draw = function() {
 	var color = this.button.on ? red : green;
 	this.domNode.css({"background-color": color});
-	this.domNode.css({"width": "" + ButtonDom.width.toString() + "px"});
-	this.domNode.css({"height": "" + ButtonDom.height.toString() + "px"});
+	this.domNode.css({"width": "" + boxWidth.toString() + "px"});
+	this.domNode.css({"height": "" + boxHeight.toString() + "px"});
 	this.domNode.css({"float": "left"});
-	this.domNode.css({"border": "" + ButtonDom.border.toString() + "px solid black"});
+	this.domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
 }
 ButtonDom.prototype.redraw = function() {
 	var color = this.button.on ? red : green;
@@ -36,23 +37,17 @@ ButtonDom.prototype.highlight = function(state) {
 	this.domNode.css({"border" : color});
 }
 
-var SampleDom = function(sample) {
-	this.sample = sample;
-	this.domNode = $("<div class = 'sample_button' fname = '" + this.sample.fname.toString() + "'></div>");
+var SamplePreviewDom = function(samplePreview) {
+	this.samplePreview = samplePreview;
+	this.domNode = $("<div class = 'sample_button'>preview</div>");
 }
-SampleDom.width = ButtonDom.width;
-SampleDom.height = ButtonDom.height;
-SampleDom.border = ButtonDom.border;
-SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
-SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
-SampleDom.prototype.draw = function() {
+SamplePreviewDom.prototype.draw = function() {
 	this.domNode.css({"background-color": blue});
-	this.domNode.css({"width": "" + SampleDom.width.toString() + "px"});
-	this.domNode.css({"height": "" + SampleDom.height.toString() + "px"});
+	this.domNode.css({"width": "" + boxWidth.toString() + "px"});
+	this.domNode.css({"height": "" + boxHeight.toString() + "px"});
 	this.domNode.css({"float": "left"});
-	this.domNode.css({"border": "" + SampleDom.border.toString() + "px solid black"});
+	this.domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
 }
-
 
 var SampleTrackDom = function(sampleTrack) {
 	this.sampleTrack = sampleTrack;
@@ -63,12 +58,11 @@ SampleTrackDom.prototype.draw = function() {
 	this.domNode.css({"height": "" + this.height().toString() + "px"});
 }
 SampleTrackDom.prototype.width = function () {
-	var numButtons = this.sampleTrack.numBeats;
-	var buttonsWidth = numButtons * ButtonDom.widthSpace;
-	return buttonsWidth + SampleDom.widthSpace;
+	var numBoxes = this.sampleTrack.numBeats + 1;
+	return numBoxes * boxWidthSpace;
 }
 SampleTrackDom.prototype.height = function () {
-	return ButtonDom.heightSpace;
+	return boxHeightSpace;
 }
 
 var GridDom = function(grid) {

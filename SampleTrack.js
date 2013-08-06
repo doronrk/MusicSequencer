@@ -10,9 +10,11 @@ var SampleTrack = function(track, numBeats) {
 	this.retrigger = false;
 	this.track = track;
 	this.numBeats = numBeats;
-	this.sample = new Sample(samples[this.track%8], this);
+	this.fname = samples[this.track%8];
 	this.domElement = new SampleTrackDom(this);
-	AppendDoms(this, this.sample);
+	this.sample = new Sample(this.fname, this);
+	this.samplePreview = new SamplePreview(this);
+	AppendDoms(this, this.samplePreview);
 	this.buttons = [];
 	for (var beat = 0; beat < this.numBeats; beat++) {
 		var newButton = new Button(this.track, beat, this);

@@ -16,7 +16,7 @@ var Grid = function(gridJSON){
 	}
 	this.draw = function() {
 		this.tracks.forEach(function(track) {
-			track.sample.domElement.draw();
+			track.samplePreview.domElement.draw();
 			track.buttons.forEach(function(button) {
 				button.domElement.draw();
 			})

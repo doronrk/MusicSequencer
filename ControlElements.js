@@ -54,12 +54,10 @@ var ButtonControl = function(button) {
 	});
 }
 
-var SampleControl = function(sample) {
-	this.sample = sample;
+var SamplePreviewControl = function(samplePreview) {
+	this.samplePreview = samplePreview;
 	var self = this;
-	this.sample.domElement.domNode.click(function () {
-		console.log("play");
-		self.sample.play();
+	this.samplePreview.domElement.domNode.click(function () {
+		self.samplePreview.sampleTrack.sample.play();
 	});
 }
-

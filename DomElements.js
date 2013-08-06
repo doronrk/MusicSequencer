@@ -95,5 +95,4 @@
   exports.dom.SampleTrackDom = SampleTrackDom;
   exports.dom.SampleDom = SampleDom;
   exports.dom.GridDom = GridDom;
-  exports.dom.appendToDom = appendToDom;
 }(this));

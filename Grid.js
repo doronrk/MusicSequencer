@@ -1,6 +1,5 @@
 ;(function(exports) {
   var Grid = function(numTracks, numBeats){
-	  this.numTracks = numTracks;
 	  this.numBeats = numBeats;
 	  this.clearButton = $("#clearButton");
 	  this.tracks = [];

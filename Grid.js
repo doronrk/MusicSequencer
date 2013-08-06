@@ -2,14 +2,14 @@
   var Grid = function(numTracks, numBeats){
 	  this.numTracks = numTracks;
 	  this.numBeats = numBeats;
-	  this.domElement = new dom.GridDom(this);
 	  this.clearButton = $("#clearButton");
 	  this.tracks = [];
 	  for (var track = 0; track < numTracks; track++) {
 		  var newSampleTrack = new SampleTrack(track, this.numBeats);
-      dom.appendToDom(this.domElement, newSampleTrack.domElement)
 		  this.tracks.push(newSampleTrack);
 	  }
+	  this.domElement = new dom.GridDom(this, this.tracks);
+
 	  this.draw = function() {
 		  this.tracks.forEach(function(track) {
 			  track.buttons.forEach(function(button) {

@@ -78,11 +78,16 @@
 	  domNode.css({"height": "" + ButtonDom.heightSpace + "px"});
   }
 
-  var GridDom = function() {
+  var GridDom = function(__, tracks) {
 	  var domNode = $("#grid");
     this.getDomNode = function() {
       return domNode;
     };
+
+    var self = this;
+    tracks.forEach(function(x) {
+      appendToDom(self, x.domElement)
+    });
   }
 
   exports.dom = {};

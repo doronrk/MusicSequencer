@@ -8,7 +8,7 @@
 		  var newSampleTrack = new SampleTrack(track, this.numBeats);
 		  this.tracks.push(newSampleTrack);
 	  }
-	  this.domElement = new dom.GridDom(this, this.tracks);
+	  this.domElement = new dom.GridDom(this.tracks);
 
 	  this.draw = function() {
 		  this.tracks.forEach(function(track) {

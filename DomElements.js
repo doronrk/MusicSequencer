@@ -78,7 +78,7 @@
 	  domNode.css({"height": "" + ButtonDom.heightSpace + "px"});
   }
 
-  var GridDom = function(__, tracks) {
+  var GridDom = function(tracks) {
 	  var domNode = $("#grid");
     this.getDomNode = function() {
       return domNode;

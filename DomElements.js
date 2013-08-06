@@ -11,16 +11,16 @@
 
   var ButtonDom = function(button) {
 	  this.button = button;
-	  this.domNode = $("<div class ='button' track = '" + this.button.track.toString() + "' beat = '" + this.button.beat.toString() + "'></div>");
+	  var domNode = $("<div class ='button' track = '" + this.button.track.toString() + "' beat = '" + this.button.beat.toString() + "'></div>");
 	  var self = this;
 	  // Should this click listener be here or in Button.js, or control.js ... hmmmmm
-	  this.domNode.click( function () {
+	  domNode.click( function () {
 		  socket.emit("buttonPress", {track: self.button.track, beat: self.button.beat})
 		  self.button.flip();
 	  })
 
     this.getDomNode = function() {
-      return this.domNode;
+      return domNode;
     };
   }
   ButtonDom.width = 50;
@@ -46,13 +46,13 @@
   }
 
   var SampleDom = function(sample) {
-	  this.domNode = $("<div class = 'sample_button' fname = '" + sample.fname.toString() + "'></div>");
-	  this.domNode.click(function () {
+	  var domNode = $("<div class = 'sample_button' fname = '" + sample.fname.toString() + "'></div>");
+	  domNode.click(function () {
 		  sample.play();
 	  });
 
     this.getDomNode = function() {
-      return this.domNode;
+      return domNode;
     };
   }
   SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
@@ -68,10 +68,10 @@
 
   var SampleTrackDom = function(sampleTrack) {
 	  this.sampleTrack = sampleTrack;
-	  this.domNode = $("<div class ='sample_track' track = '" + this.sampleTrack.track.toString() + "'></div>");
+	  var domNode = $("<div class ='sample_track' track = '" + this.sampleTrack.track.toString() + "'></div>");
 
     this.getDomNode = function() {
-      return this.domNode;
+      return domNode;
     };
   }
   SampleTrackDom.prototype.draw = function() {
@@ -89,10 +89,10 @@
 
   var GridDom = function(grid) {
 	  this.grid = grid;
-	  this.domNode = $("#grid");
+	  var domNode = $("#grid");
 
     this.getDomNode = function() {
-      return this.domNode;
+      return domNode;
     };
   }
   GridDom.prototype.draw = function() {

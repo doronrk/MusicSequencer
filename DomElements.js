@@ -39,9 +39,21 @@ ButtonDom.prototype.highlight = function(state) {
 
 var SamplePreviewDom = function(samplePreview) {
 	this.samplePreview = samplePreview;
-	this.domNode = $("<div class = 'sample_button'>preview</div>");
+	this.domNode = $("<div class = 'sample_button'>" + this.samplePreview.sampleTrack.fname + "</div>");
 }
 SamplePreviewDom.prototype.draw = function() {
+	this.domNode.css({"background-color": blue});
+	this.domNode.css({"width": "" + boxWidth.toString() + "px"});
+	this.domNode.css({"height": "" + boxHeight.toString() + "px"});
+	this.domNode.css({"float": "left"});
+	this.domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+}
+
+var SampleSelectorDom = function(sampleSelector) {
+	this.sampleSelector = sampleSelector;
+	this.domNode = $("<input id='sampleFileName' type='file'/>");
+}
+SampleSelectorDom.prototype.draw = function() {
 	this.domNode.css({"background-color": blue});
 	this.domNode.css({"width": "" + boxWidth.toString() + "px"});
 	this.domNode.css({"height": "" + boxHeight.toString() + "px"});
@@ -58,7 +70,7 @@ SampleTrackDom.prototype.draw = function() {
 	this.domNode.css({"height": "" + this.height().toString() + "px"});
 }
 SampleTrackDom.prototype.width = function () {
-	var numBoxes = this.sampleTrack.numBeats + 1;
+	var numBoxes = this.sampleTrack.numBeats + 2;
 	return numBoxes * boxWidthSpace;
 }
 SampleTrackDom.prototype.height = function () {

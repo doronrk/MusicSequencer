@@ -13,7 +13,9 @@ var SampleTrack = function(track, numBeats) {
 	this.fname = samples[this.track%8];
 	this.domElement = new SampleTrackDom(this);
 	this.sample = new Sample(this.fname, this);
+	this.sampleSelector = new SampleSelector(this);
 	this.samplePreview = new SamplePreview(this);
+	AppendDoms(this, this.sampleSelector);
 	AppendDoms(this, this.samplePreview);
 	this.buttons = [];
 	for (var beat = 0; beat < this.numBeats; beat++) {
@@ -22,3 +24,9 @@ var SampleTrack = function(track, numBeats) {
 		this.buttons.push(newButton);
 	}
 }
+SampleTrack.prototype.reloadSample = function(fname) {
+	this.fname = fname;
+	this.sample = new Sample(this.fname, this);
+	console.log("hello");
+}
+

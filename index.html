@@ -15,6 +15,7 @@
 	<script src="ControlElements.js"></script>
 	<script src="Sample.js"></script>
 	<script src="SamplePreview.js"></script>
+	<script src="SampleSelector.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body style="background-color: black;">
@@ -25,6 +26,7 @@
 	<button type="button" id = "restartButton">Restart</button>
 	<button type="button" id = "clearButton">Clear</button>
 	<button type="button" id = "saveButton">Save</button>
+	<button type="button" id = "printFilename">printFileName</button>
 	<font color="white">
 		<form action="">
 		bpm: <input type="text" name="bpm"><br>
@@ -33,6 +35,12 @@
 		<input type="submit" value="Submit" id = "submitButton">
 		</form>
 	</font>
-	<input id="sampleFileName" type="file" />
+	<input id="sampleFileName" type="file"/>
+	<script>
+		// $(":file").get(0).value;
+		$("#printFilename").click(function() {
+			console.log($(":file").get(0).value);
+		});
+	</script>
 </body>
 </html>

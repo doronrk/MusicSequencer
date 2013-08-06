@@ -61,3 +61,13 @@ var SamplePreviewControl = function(samplePreview) {
 		self.samplePreview.sampleTrack.sample.play();
 	});
 }
+
+var SampleSelectorControl = function(sampleSelector) {
+	this.sampleSelector = sampleSelector;
+	this.sampleSelector.domElement.domNode.get(0).addEventListener('change', this.handleFileSelect, false);
+	this.handleFileSelect = function(evt) {
+		console.log(";alsdkjf;laksdjf");
+		var files = evt.target.files;
+		this.sampleSelector.sampleTrack.reloadSample(files[0].name);
+	};
+}

@@ -32,19 +32,19 @@
   ButtonDom.heightSpace = ButtonDom.height + 2 * (ButtonDom.border);
   ButtonDom.prototype.draw = function() {
 	  var color = this.button.on ? red : green;
-	  this.domNode.css({"background-color": color});
-	  this.domNode.css({"width": "" + ButtonDom.width.toString() + "px"});
-	  this.domNode.css({"height": "" + ButtonDom.height.toString() + "px"});
-	  this.domNode.css({"float": "left"});
-	  this.domNode.css({"border": "" + ButtonDom.border.toString() + "px solid black"});
+	  this.getDomNode().css({"background-color": color});
+	  this.getDomNode().css({"width": "" + ButtonDom.width.toString() + "px"});
+	  this.getDomNode().css({"height": "" + ButtonDom.height.toString() + "px"});
+	  this.getDomNode().css({"float": "left"});
+	  this.getDomNode().css({"border": "" + ButtonDom.border.toString() + "px solid black"});
   }
   ButtonDom.prototype.redraw = function() {
 	  var color = this.button.on ? red : green;
-	  this.domNode.css({"background-color": color});
+	  this.getDomNode().css({"background-color": color});
   }
   ButtonDom.prototype.highlight = function(state) {
 	  var color = state ? highlight : notHighlight;
-	  this.domNode.css({"border" : color});
+	  this.getDomNode().css({"border" : color});
   }
 
   var SampleDom = function(sample) {
@@ -60,11 +60,11 @@
   SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
   SampleDom.prototype.draw = function() {
-	  this.domNode.css({"background-color": blue});
-	  this.domNode.css({"width": "" + ButtonDom.width.toString() + "px"});
-	  this.domNode.css({"height": "" + ButtonDom.height.toString() + "px"});
-	  this.domNode.css({"float": "left"});
-	  this.domNode.css({"border": "" + ButtonDom.border.toString() + "px solid black"});
+	  this.getDomNode().css({"background-color": blue});
+	  this.getDomNode().css({"width": "" + ButtonDom.width.toString() + "px"});
+	  this.getDomNode().css({"height": "" + ButtonDom.height.toString() + "px"});
+	  this.getDomNode().css({"float": "left"});
+	  this.getDomNode().css({"border": "" + ButtonDom.border.toString() + "px solid black"});
   }
 
 
@@ -77,8 +77,8 @@
     };
   }
   SampleTrackDom.prototype.draw = function() {
-	  this.domNode.css({"width" : "" + this.width().toString() + "px"});
-	  this.domNode.css({"height": "" + this.height().toString() + "px"});
+	  this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
+	  this.getDomNode().css({"height": "" + this.height().toString() + "px"});
   }
   SampleTrackDom.prototype.width = function () {
 	  var numButtons = this.sampleTrack.numBeats;
@@ -98,8 +98,8 @@
     };
   }
   GridDom.prototype.draw = function() {
-	  this.domNode.css({"width" : "" + this.width().toString() + "px"});
-	  this.domNode.css({"height": "" + this.height().toString() + "px"});
+	  this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
+	  this.getDomNode().css({"height": "" + this.height().toString() + "px"});
   }
   GridDom.prototype.width = function() {
 	  return this.grid.tracks[0].domElement.width();

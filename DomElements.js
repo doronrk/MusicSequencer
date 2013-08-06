@@ -1,6 +1,7 @@
 var green = "rgb(0, 128, 0)",
 	red = "rgb(255, 0, 0)",
 	blue = "rgb(0, 0, 255)",
+	grey = "rgb(100, 100, 100)",
 	highlight = "2px solid white",
 	notHighlight = "2px solid black";
 
@@ -14,6 +15,42 @@ function AppendDoms (parent, child) {
 	var parentDom = parent.domElement.domNode;
 	var childDom = child.domElement.domNode;
 	parentDom.append(childDom);
+}
+
+var BPMCalculatorDom = function(BPMCalculator) {
+	this.BPMCalculator = BPMCalculator;
+	this.domNode = $("<div id = 'BPMCalculator'>" + this.BPMCalculator.bpm + "</div>");
+	this.draw = function() {
+		this.domNode.css({"background-color": grey});
+		this.domNode.css({"width": "" + boxWidth.toString() + "px"});
+		this.domNode.css({"height": "" + boxHeight.toString() + "px"});
+		this.domNode.css({"float": "left"});
+		this.domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+	}
+	var self = this;
+	this.domNode.click(function() {
+		var d = new Date();
+		var ms = d.getMilliseconds();
+		var s = d.getSeconds();
+		self.BPMCalculator.handleClick(s, ms);
+	});
+}
+
+var BPMSyncDom = function(BPMCalculator) {
+	this.BPMCalculator = BPMCalculator;
+	this.domNode = $("<div id = 'BPMSync'>SYNC BPM</div>");
+	this.draw = function() {
+		this.domNode.css({"background-color": grey});
+		this.domNode.css({"width": "" + boxWidth.toString() + "px"});
+		this.domNode.css({"height": "" + boxHeight.toString() + "px"});
+		this.domNode.css({"float": "left"});
+		this.domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+	}
+	var self = this;
+	this.domNode.click(function() {
+		var bpm = self.BPMCalculator.bpm;
+		self.BPMCalculator.grid.handleBpm(bpm);
+	});
 }
 
 var ButtonDom = function(button) {

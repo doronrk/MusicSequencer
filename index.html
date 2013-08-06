@@ -16,6 +16,7 @@
 	<script src="Sample.js"></script>
 	<script src="SamplePreview.js"></script>
 	<script src="SampleSelector.js"></script>
+	<script src="BPMCalculator.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body style="background-color: black;">
@@ -27,7 +28,7 @@
 	<button type="button" id = "clearButton">Clear</button>
 	<button type="button" id = "saveButton">Save</button>
 	<font color="white">
-		<form>
+		<form id = "bpmForm">
 			bpm: <input type="text" name="bpm" id = "bpm">
 			<input type="submit" value="Submit" id = "bpmButton">
 		</form>

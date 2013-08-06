@@ -68,8 +68,6 @@ var SampleSelectorControl = function(sampleSelector) {
 	this.sampleSelector.domElement.domNode.bind("change", function (e)
 	{
 		var file = self.sampleSelector.domElement.domNode.val();
-		// file = file.replace(/^.*\\/i, "");
-		// file = "samples/"+file;	
 		self.sampleSelector.sampleTrack.reloadSample(file);
 		console.log(file);
 	});

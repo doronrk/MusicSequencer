@@ -7,6 +7,7 @@ var Grid = function(gridJSON){
 	this.resizeButton = $("#resizeButton");
 	this.transport = new Transport(this);
 	this.transportbpm = gridJSON.bpm;
+	this.BPMCalculator = new BPMCalculator(this);
 	this.tracks = [];
 	for (var track = 0; track < this.numTracks; track++) {
 		var newSampleTrack = new SampleTrack(track, this.numBeats, this);
@@ -30,6 +31,8 @@ var Grid = function(gridJSON){
 			}
 			this.tracks[track].domElement.draw();
 		}
+		this.BPMCalculator.domElement.draw();
+		this.BPMCalculator.syncElement.draw();
 	}
 	this.getBeat = function(beat) {
 		buttons = [];
@@ -68,6 +71,8 @@ var Grid = function(gridJSON){
 	var self = this;
 	this.handleBpm= function(bpm) {
 		self.transport.bpm = bpm;
+		var displayBpm = Math.round(bpm * 100)/100;
+		$("#bpm").val(displayBpm);
 		self.transport.initStepper();
 	}
 	this.handleResize = function(newTracks, newBeats) {

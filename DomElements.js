@@ -65,18 +65,14 @@
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
 
 
-  var SampleTrackDom = function(track, numBeats) {
+  var SampleTrackDom = function(track) {
 	  var domNode = $("<div class ='sample_track' track = '" + track.toString() + "'></div>");
 
     this.getDomNode = function() {
       return domNode;
     };
 
-    var width = numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
-    var height = ButtonDom.heightSpace;
-
-	  domNode.css({"width" : "" + width + "px"});
-	  domNode.css({"height": "" + height + "px"});
+	  domNode.css({"height": "" + ButtonDom.heightSpace + "px"});
   }
 
   var GridDom = function() {

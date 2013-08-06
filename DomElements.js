@@ -87,28 +87,11 @@
 	  return ButtonDom.heightSpace;
   }
 
-  var GridDom = function(grid) {
-	  this.grid = grid;
+  var GridDom = function() {
 	  var domNode = $("#grid");
-
     this.getDomNode = function() {
       return domNode;
     };
-  }
-
-  GridDom.prototype = {
-    draw: function() {
-	    this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
-	    this.getDomNode().css({"height": "" + this.height().toString() + "px"});
-    },
-
-    width: function() {
-	    return this.grid.tracks[0].domElement.width();
-    },
-
-    height: function() {
-	    return this.numTracks * this.grid.tracks[0].domElement.height();
-    }
   }
 
   exports.dom = {};

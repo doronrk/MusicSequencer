@@ -18,7 +18,6 @@
 			  })
 			  track.domElement.draw();
 		  })
-		  this.domElement.draw();
 	  }
 	  this.getBeat = function(beat) {
 		  return this.tracks.map(function (track) {

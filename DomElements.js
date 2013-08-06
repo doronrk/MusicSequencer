@@ -65,13 +65,14 @@
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
 
 
-  var SampleTrackDom = function(track) {
+  var SampleTrackDom = function(track, sample) {
 	  var domNode = $("<div class ='sample_track' track = '" + track + "'></div>");
 
     this.getDomNode = function() {
       return domNode;
     };
 
+    appendToDom(this, sample.domElement);
 	  domNode.css({"height": "" + ButtonDom.heightSpace + "px"});
   }
 

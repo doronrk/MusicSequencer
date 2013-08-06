@@ -10,8 +10,7 @@ var SampleTrack = function(track, numBeats) {
 	this.track = track;
 	this.numBeats = numBeats;
 	this.sample = new Sample(samples[this.track%8], this);
-	this.domElement = new dom.SampleTrackDom(track);
-  dom.appendToDom(this.domElement, this.sample.domElement)
+	this.domElement = new dom.SampleTrackDom(track, this.sample);
 	this.buttons = [];
 	for (var beat = 0; beat < this.numBeats; beat++) {
 		var newButton = new Button(this.track, beat, this);

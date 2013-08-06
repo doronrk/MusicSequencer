@@ -26,20 +26,23 @@
 	<button type="button" id = "restartButton">Restart</button>
 	<button type="button" id = "clearButton">Clear</button>
 	<button type="button" id = "saveButton">Save</button>
-	<button type="button" id = "printFilename">printFileName</button>
 	<font color="white">
-		<form action="">
-		bpm: <input type="text" name="bpm"><br>
-		number of tracks: <input type="text" name="numTracks">
-		number of beats: <input type="text" name="numBeats">
-		<input type="submit" value="Submit" id = "submitButton">
+		<form>
+			bpm: <input type="text" name="bpm" id = "bpm">
+			<input type="submit" value="Submit" id = "bpmButton">
+		</form>
+		<form>
+			number of tracks: <input type="text" name="numTracks" id="numTracks">
+			number of beats: <input type="text" name="numBeats" id="numBeats">
+			<input type="submit" value="Submit" id = "resizeButton">
 		</form>
 	</font>
-	<input id="sampleFileName" type="file"/>
 	<script>
-		// $(":file").get(0).value;
-		$("#printFilename").click(function() {
-			console.log($(":file").get(0).value);
+		$("#submitButton").click(function(e) {
+			e.preventDefault();
+			var bpm = $("#bpm").val();
+			var numTracks = $("#numTracks").val();
+			var numBeats = $("#numBeats").val();
 		});
 	</script>
 </body>

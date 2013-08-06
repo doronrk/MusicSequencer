@@ -22,26 +22,13 @@ var TransportControl = function(transport) {
 	this.stopButton.hide();
 	var self = this;
 	this.startButton.click(function() {
-		self.transport.on = true;
-		$(this).hide();
-		self.stopButton.show();
-		self.transport.initStepper();
+		self.transport.startHandle();
 	});
 	this.stopButton.click(function(){
-		self.transport.on = false;
-		$(this).hide();
-		self.startButton.show();
-		clearInterval(self.transport.steppingProcess);
+		self.transport.stopHandle();
 	});
 	this.restartButton.click(function () {
-		clearInterval(self.transport.steppingProcess);
-		self.transport.grid.unhighlight();
-		self.transport.currentBeat = 0;
-		if (self.transport.on) {
-			self.transport.initStepper();
-		} else {
-			self.transport.grid.highlightBeat(0, true);
-		}
+		self.transport.restartHandle();
 	});
 }
 
@@ -64,10 +51,13 @@ var SamplePreviewControl = function(samplePreview) {
 
 var SampleSelectorControl = function(sampleSelector) {
 	this.sampleSelector = sampleSelector;
-	this.sampleSelector.domElement.domNode.get(0).addEventListener('change', this.handleFileSelect, false);
-	this.handleFileSelect = function(evt) {
-		console.log(";alsdkjf;laksdjf");
-		var files = evt.target.files;
-		this.sampleSelector.sampleTrack.reloadSample(files[0].name);
-	};
+	var self = this;
+	this.sampleSelector.domElement.domNode.bind("change", function (e)
+	{
+		var file = self.sampleSelector.domElement.domNode.val();
+		// file = file.replace(/^.*\\/i, "");
+		// file = "samples/"+file;	
+		self.sampleSelector.sampleTrack.reloadSample(file);
+		console.log(file);
+	});
 }

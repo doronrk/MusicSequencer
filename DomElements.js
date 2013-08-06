@@ -95,15 +95,20 @@
       return domNode;
     };
   }
-  GridDom.prototype.draw = function() {
-	  this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
-	  this.getDomNode().css({"height": "" + this.height().toString() + "px"});
-  }
-  GridDom.prototype.width = function() {
-	  return this.grid.tracks[0].domElement.width();
-  }
-  GridDom.prototype.height = function() {
-	  return this.numTracks * this.grid.tracks[0].domElement.height();
+
+  GridDom.prototype = {
+    draw: function() {
+	    this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
+	    this.getDomNode().css({"height": "" + this.height().toString() + "px"});
+    },
+
+    width: function() {
+	    return this.grid.tracks[0].domElement.width();
+    },
+
+    height: function() {
+	    return this.numTracks * this.grid.tracks[0].domElement.height();
+    }
   }
 
   exports.dom = {};

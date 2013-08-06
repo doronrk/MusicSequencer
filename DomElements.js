@@ -67,14 +67,13 @@
 
 
   var SampleTrackDom = function(sampleTrack) {
-	  this.sampleTrack = sampleTrack;
-	  var domNode = $("<div class ='sample_track' track = '" + this.sampleTrack.track.toString() + "'></div>");
+	  var domNode = $("<div class ='sample_track' track = '" + sampleTrack.track.toString() + "'></div>");
 
     this.getDomNode = function() {
       return domNode;
     };
 
-    var width = this.sampleTrack.numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
+    var width = sampleTrack.numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
     var height = ButtonDom.heightSpace;
 
 	  this.getDomNode().css({"width" : "" + width + "px"});

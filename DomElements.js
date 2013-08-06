@@ -49,17 +49,14 @@
 		  sample.play();
 	  })
   }
-  SampleDom.width = ButtonDom.width;
-  SampleDom.height = ButtonDom.height;
-  SampleDom.border = ButtonDom.border;
   SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
   SampleDom.prototype.draw = function() {
 	  this.domNode.css({"background-color": blue});
-	  this.domNode.css({"width": "" + SampleDom.width.toString() + "px"});
-	  this.domNode.css({"height": "" + SampleDom.height.toString() + "px"});
+	  this.domNode.css({"width": "" + ButtonDom.width.toString() + "px"});
+	  this.domNode.css({"height": "" + ButtonDom.height.toString() + "px"});
 	  this.domNode.css({"float": "left"});
-	  this.domNode.css({"border": "" + SampleDom.border.toString() + "px solid black"});
+	  this.domNode.css({"border": "" + ButtonDom.border.toString() + "px solid black"});
   }
 
 

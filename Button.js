@@ -4,6 +4,7 @@ var Button = function(track, beat, sampleTrack){ //will take dom
 	this.sampleTrack = sampleTrack;
 	this.on = false;
 	this.domElement = new ButtonDom(this);
+	this.controlElement = new ButtonControl(this);
 }
 Button.prototype.flip = function(){
 	this.on = !this.on;

@@ -13,12 +13,6 @@ function AppendDoms (parent, child) {
 var ButtonDom = function(button) {
 	this.button = button;
 	this.domNode = $("<div class ='button' track = '" + this.button.track.toString() + "' beat = '" + this.button.beat.toString() + "'></div>");
-	var self = this;
-	// Should this click listener be here or in Button.js, or control.js ... hmmmmm
-	this.domNode.click( function () {
-		socket.emit("buttonPress", {track: self.button.track, beat: self.button.beat})
-		self.button.flip();
-	})
 }
 ButtonDom.width = 50;
 ButtonDom.height = 50;
@@ -45,10 +39,6 @@ ButtonDom.prototype.highlight = function(state) {
 var SampleDom = function(sample) {
 	this.sample = sample;
 	this.domNode = $("<div class = 'sample_button' fname = '" + this.sample.fname.toString() + "'></div>");
-	var self = this;
-	this.domNode.click(function () {
-		self.sample.play();
-	})
 }
 SampleDom.width = ButtonDom.width;
 SampleDom.height = ButtonDom.height;

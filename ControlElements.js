@@ -45,3 +45,21 @@ var TransportControl = function(transport) {
 	});
 }
 
+var ButtonControl = function(button) {
+	this.button = button;
+	var self = this;
+	this.button.domElement.domNode.click(function() {
+		self.button.flip();
+		socket.emit("buttonPress", {track: self.button.track, beat: self.button.beat});
+	});
+}
+
+var SampleControl = function(sample) {
+	this.sample = sample;
+	var self = this;
+	this.sample.domElement.domNode.click(function () {
+		console.log("play");
+		self.sample.play();
+	});
+}
+

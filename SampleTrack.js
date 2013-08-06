@@ -5,8 +5,9 @@ var samples = ["horn.mp3", "triangle.mp3", "crash.mp3", "hiHat.mp3", "clap.mp3",
 // ie numBeats * 2 or /2 or /3 *3
 // this will make stepper more complex, but fun challenge
 
-var SampleTrack = function(track, numBeats) {
+var SampleTrack = function(track, numBeats, grid) {
 	this.on = true;
+	this.grid = grid;
 	this.retrigger = false;
 	this.track = track;
 	this.numBeats = numBeats;
@@ -29,4 +30,3 @@ SampleTrack.prototype.reloadSample = function(fname) {
 	this.sample = new Sample(this.fname, this);
 	console.log("hello");
 }
-

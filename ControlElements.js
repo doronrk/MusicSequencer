@@ -2,6 +2,8 @@ var GridControl = function(grid) {
 	this.grid = grid;
 	this.clearButton = $("#clearButton");
 	this.saveButton = $("#saveButton");
+	this.bpmButton = $("#bpmButton");
+	this.resizeButton = $("#resizeButton");
 	var self = this;
 	this.clearButton.click(function () {
 		socket.emit("clearButton", {});
@@ -10,6 +12,17 @@ var GridControl = function(grid) {
 	this.saveButton.click(function () {
 		var jReady = new JSONReady(self.grid);
 		socket.emit("saveButton", {gridJSON: jReady});
+	});
+	this.bpmButton.click(function(e){
+		e.preventDefault();
+		var bpm = $("#bpm").val() ? $("#bpm").val() : self.grid.transport.bpm;
+		self.grid.handleBpm(bpm);
+	});
+	this.resizeButton.click(function(e) {
+		e.preventDefault();
+		var numTracks = $("#numTracks").val() ? parseInt($("#numTracks").val(), 10) : self.numTracks;
+		var numBeats = $("#numBeats").val() ? parseInt($("#numBeats").val(), 10) : self.numBeats;
+		self.grid.handleResize(numTracks, numBeats);
 	});
 }
 

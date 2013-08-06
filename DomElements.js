@@ -39,7 +39,11 @@ ButtonDom.prototype.highlight = function(state) {
 
 var SamplePreviewDom = function(samplePreview) {
 	this.samplePreview = samplePreview;
-	this.domNode = $("<div class = 'sample_button'>" + this.samplePreview.sampleTrack.fname + "</div>");
+	var file = this.samplePreview.sampleTrack.fname;
+	file = file.replace(/^.*\\/i, "");
+	file = file.replace("samples/", "");
+	console.log(file);
+	this.domNode = $("<font color='white'><div class = 'sample_button'>" + file + "</div></font>");
 }
 SamplePreviewDom.prototype.draw = function() {
 	this.domNode.css({"background-color": blue});
@@ -70,7 +74,8 @@ SampleTrackDom.prototype.draw = function() {
 	this.domNode.css({"height": "" + this.height().toString() + "px"});
 }
 SampleTrackDom.prototype.width = function () {
-	var numBoxes = this.sampleTrack.numBeats + 2;
+	var numBoxes = this.sampleTrack.grid.numBeats + 2;
+	console.log(numBoxes);
 	return numBoxes * boxWidthSpace;
 }
 SampleTrackDom.prototype.height = function () {

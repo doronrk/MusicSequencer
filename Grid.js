@@ -6,9 +6,10 @@ var Grid = function(gridJSON){
 	this.bpmButton = $("#bpmButton");
 	this.resizeButton = $("#resizeButton");
 	this.transport = new Transport(this);
+	this.transportbpm = gridJSON.bpm;
 	this.tracks = [];
 	for (var track = 0; track < this.numTracks; track++) {
-		var newSampleTrack = new SampleTrack(track, this.numBeats);
+		var newSampleTrack = new SampleTrack(track, this.numBeats, this);
 		AppendDoms(this, newSampleTrack);
 		this.tracks.push(newSampleTrack);
 	}
@@ -17,6 +18,9 @@ var Grid = function(gridJSON){
 			this.tracks[track].buttons[beat].on = gridJSON.tracks[track][beat];
 		}
 	}
+	$("#bpm").val(this.transport.bpm);
+	$("#numTracks").val(this.numTracks);
+	$("#numBeats").val(this.numBeats);
 	this.draw = function() {
 		for (var track = 0; track < this.numTracks; track++) {
 			this.tracks[track].samplePreview.domElement.draw();
@@ -62,24 +66,16 @@ var Grid = function(gridJSON){
 		})
 	}
 	var self = this;
-	this.bpmButton.click(function(e){
-		e.preventDefault();
-		var bpm = $("#bpm").val() ? $("#bpm").val() : self.transport.bpm;
+	this.handleBpm= function(bpm) {
 		self.transport.bpm = bpm;
 		self.transport.initStepper();
-	});
-	this.resizeButton.click(function(e) {
-		e.preventDefault();
-		var numTracks = $("#numTracks").val() ? parseInt($("#numTracks").val(), 10) : self.numTracks;
-		var numBeats = $("#numBeats").val() ? parseInt($("#numBeats").val(), 10) : self.numBeats;
-		self.handleResize(numTracks, numBeats);
-	});
+	}
 	this.handleResize = function(newTracks, newBeats) {
 		this.transport.stopHandle();
 		this.transport.restartHandle();
 		// create new tracks
 		for (var track = this.tracks.length; track < newTracks; track++) {
-			var newSampleTrack = new SampleTrack(track, this.numBeats);
+			var newSampleTrack = new SampleTrack(track, this.numBeats, this);
 			AppendDoms(this, newSampleTrack);
 			this.tracks.push(newSampleTrack);
 		}
@@ -93,6 +89,30 @@ var Grid = function(gridJSON){
 		for (var track = newTracks; track < this.tracks.length; track++) {
 			console.log("hide previous tracks");
 			this.tracks[track].domElement.domNode.hide();
+		}
+		// create new beats
+		for (var beat = this.tracks[0].buttons.length; beat < newBeats; beat++) {
+			console.log("create new beats");
+			for (var track = 0; track < this.tracks.length; track++) {
+				var thisTrack = this.tracks[track];
+				var newButton = new Button(track, beat, thisTrack);
+				AppendDoms(thisTrack, newButton);
+				thisTrack.buttons.push(newButton);
+			}
+		}
+		// draw visible buttons
+		for (var beat = 0; beat < this.numBeats; beat++) {
+			console.log("draw visible buttons");
+			this.getBeat(beat).forEach(function (button) {
+				button.domElement.domNode.show();
+			});
+		}
+		// hide previously visible buttons
+		for (var beat = this.numBeats; beat < this.tracks[0].buttons.length; beat++) {
+			console.log("hide buttons");
+			this.getBeat(beat).forEach(function (button) {
+				button.domElement.domNode.hide();
+			});
 		}
 		this.draw();
 	}

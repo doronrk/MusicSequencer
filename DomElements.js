@@ -76,8 +76,8 @@
     var width = sampleTrack.numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
     var height = ButtonDom.heightSpace;
 
-	  this.getDomNode().css({"width" : "" + width + "px"});
-	  this.getDomNode().css({"height": "" + height + "px"});
+	  domNode.css({"width" : "" + width + "px"});
+	  domNode.css({"height": "" + height + "px"});
   }
 
   var GridDom = function() {

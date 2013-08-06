@@ -9,7 +9,7 @@
     parentDom.getDomNode().append(childDom.getDomNode());
   };
 
-  var ButtonDom = function(button) {
+  var ButtonDom = function(button, sampleTrack) {
 	  this.button = button;
 	  var domNode = $("<div class ='button' track = '" + this.button.track.toString() + "' beat = '" + this.button.beat.toString() + "'></div>");
 	  var self = this;
@@ -22,6 +22,8 @@
     this.getDomNode = function() {
       return domNode;
     };
+
+    appendToDom(sampleTrack.domElement, this)
   }
   ButtonDom.width = 50;
   ButtonDom.height = 50;

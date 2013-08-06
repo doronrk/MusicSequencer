@@ -14,7 +14,6 @@ var SampleTrack = function(track, numBeats) {
 	this.buttons = [];
 	for (var beat = 0; beat < this.numBeats; beat++) {
 		var newButton = new Button(this.track, beat, this);
-    dom.appendToDom(this.domElement, newButton.domElement)
 		this.buttons.push(newButton);
 	}
 }

@@ -78,13 +78,9 @@
 	  this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
 	  this.getDomNode().css({"height": "" + this.height().toString() + "px"});
   }
-  SampleTrackDom.prototype.width = function () {
-	  var numButtons = this.sampleTrack.numBeats;
-	  var buttonsWidth = numButtons * ButtonDom.widthSpace;
-	  return buttonsWidth + SampleDom.widthSpace;
-  }
-  SampleTrackDom.prototype.height = function () {
-	  return ButtonDom.heightSpace;
+
+    var width = this.sampleTrack.numBeats * ButtonDom.widthSpace + SampleDom.widthSpace;
+    var height = ButtonDom.heightSpace;
   }
 
   var GridDom = function() {

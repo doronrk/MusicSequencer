@@ -51,19 +51,18 @@
 		  sample.play();
 	  });
 
+	  domNode.css({"background-color": blue});
+	  domNode.css({"width": "" + ButtonDom.width.toString() + "px"});
+	  domNode.css({"height": "" + ButtonDom.height.toString() + "px"});
+	  domNode.css({"float": "left"});
+	  domNode.css({"border": "" + ButtonDom.border.toString() + "px solid black"});
+
     this.getDomNode = function() {
       return domNode;
     };
   }
   SampleDom.widthSpace = SampleDom.width + 2 * SampleDom.border;
   SampleDom.heightSpace = SampleDom.height + 2 * SampleDom.border;
-  SampleDom.prototype.draw = function() {
-	  this.getDomNode().css({"background-color": blue});
-	  this.getDomNode().css({"width": "" + ButtonDom.width.toString() + "px"});
-	  this.getDomNode().css({"height": "" + ButtonDom.height.toString() + "px"});
-	  this.getDomNode().css({"float": "left"});
-	  this.getDomNode().css({"border": "" + ButtonDom.border.toString() + "px solid black"});
-  }
 
 
   var SampleTrackDom = function(sampleTrack) {

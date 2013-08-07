@@ -48,7 +48,7 @@ var TransportControl = function(transport) {
 var ButtonControl = function(button) {
 	this.button = button;
 	var self = this;
-	this.button.domElement.domNode.click(function() {
+	this.button.domElement.getDomNode().click(function() {
 		self.button.flip();
 		socket.emit("buttonPress", {track: self.button.track, beat: self.button.beat});
 	});
@@ -57,7 +57,7 @@ var ButtonControl = function(button) {
 var SamplePreviewControl = function(samplePreview) {
 	this.samplePreview = samplePreview;
 	var self = this;
-	this.samplePreview.domElement.domNode.click(function () {
+	this.samplePreview.domElement.getDomNode().click(function () {
 		self.samplePreview.sampleTrack.sample.play();
 	});
 }
@@ -65,7 +65,7 @@ var SamplePreviewControl = function(samplePreview) {
 var SampleSelectorControl = function(sampleSelector) {
 	this.sampleSelector = sampleSelector;
 	var self = this;
-	this.sampleSelector.domElement.domNode.bind("change", function (e)
+	this.sampleSelector.domElement.getDomNode().bind("change", function (e)
 	{
 		var file = self.sampleSelector.domElement.domNode.val();
 		self.sampleSelector.sampleTrack.reloadSample(file);

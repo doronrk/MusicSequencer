@@ -14,6 +14,5 @@ $(document).ready(function () {
 	})
 	socket.on("loadGrid", function(data) {
 		grid = new Grid(data.gridJSON);
-		grid.draw();
 	})
 });

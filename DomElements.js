@@ -93,10 +93,14 @@
 			return domNode;
 		};
 	}
+	SamplePreviewDom.prototype.redraw = function() {
+		var displayName = this.samplePreview.sampleTrack.fname.replace("samples/", "");
+		this.getDomNode().get(0).innerHTML = displayName;
+	}
 
 	var SampleSelectorDom = function(sampleSelector) {
 		this.sampleSelector = sampleSelector;
-		var domNode = $("<input id='sampleFileName' type='file'/>");
+		var domNode = $("<font color='white'><input id='sampleFileName' type='file'/></font>");
 		domNode.css({"background-color": blue});
 		domNode.css({"width": "" + boxWidth.toString() + "px"});
 		domNode.css({"height": "" + boxHeight.toString() + "px"});
@@ -107,18 +111,81 @@
 		};
 	}
 
+	var SampleMuteDom = function(sampleTrack) {
+		this.sampleTrack = sampleTrack;
+		var domNode = $("<font color='white'><div class = 'sampleMute'>Mute</div></font>");
+		domNode.css({"background-color": blue});
+		domNode.css({"width": "" + boxWidth.toString() + "px"});
+		domNode.css({"height": "" + boxHeight.toString() + "px"});
+		domNode.css({"float": "left"});
+		domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+		this.getDomNode = function() {
+			return domNode;
+		};
+		appendToDom(sampleTrack.domElement, this);
+		var self = this;
+		domNode.click(function() {
+			self.sampleTrack.on = !self.sampleTrack.on;
+			self.redraw();
+		});
+	}
+	SampleMuteDom.prototype.redraw = function() {
+		var color = this.sampleTrack.on ? blue : grey;
+		this.getDomNode().css({"background-color": color});
+	}
+
+	var SelectAllDom = function(sampleTrack) {
+		this.sampleTrack = sampleTrack;
+		var domNode = $("<<font color='white'><div class = 'selectAll'>Select'\n'All</div></font>");
+		domNode.css({"background-color": blue});
+		domNode.css({"width": "" + boxWidth.toString() + "px"});
+		domNode.css({"height": "" + boxHeight.toString() + "px"});
+		domNode.css({"float": "left"});
+		domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+		this.getDomNode = function() {
+			return domNode;
+		};
+		appendToDom(sampleTrack.domElement, this);
+		var self = this;
+		domNode.click(function() {
+			self.sampleTrack.handleSelectAll();
+		});
+	}
+
+	var ClearAllDom = function(sampleTrack) {
+		this.sampleTrack = sampleTrack;
+		var domNode = $("<<font color='white'><div class = 'selectAll'>Clear'\n'All</div></font>");
+		domNode.css({"background-color": blue});
+		domNode.css({"width": "" + boxWidth.toString() + "px"});
+		domNode.css({"height": "" + boxHeight.toString() + "px"});
+		domNode.css({"float": "left"});
+		domNode.css({"border": "" + boxBorder.toString() + "px solid black"});
+		this.getDomNode = function() {
+			return domNode;
+		};
+		appendToDom(sampleTrack.domElement, this);
+		var self = this;
+		domNode.click(function() {
+			self.sampleTrack.handleClearAll();
+		})
+	}
+
 	var SampleTrackDom = function(sampleTrack) {
 		this.sampleTrack = sampleTrack;
 		var domNode = $("<div class ='sample_track' track = '" + this.sampleTrack.track.toString() + "'></div>");
 		this.getDomNode = function() {
 			return domNode;
 		};
-		// appendToDom(this, sample.domElement);
-		domNode.css({"width" : "" + this.width().toString() + "px"});
-		domNode.css({"height": "" + boxHeightSpace + "px"});
+	}
+	SampleTrackDom.prototype.draw = function () {
+		this.sampleTrack.buttons.forEach(function(x) {
+			x.domElement.redraw();
+		});
+		this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
+		this.getDomNode().css({"height": "" + boxHeightSpace + "px"});
 	}
 	SampleTrackDom.prototype.width = function () {
-		var numBoxes = this.sampleTrack.grid.numBeats + 2;
+		var numBoxes = this.sampleTrack.grid.numBeats + 6;
 		return numBoxes * boxWidthSpace;
 	}
 	var GridDom = function(tracks) {
@@ -133,6 +200,9 @@
 		});
 	}
 	GridDom.prototype.draw = function() {
+		this.tracks.forEach(function(x) {
+			x.domElement.draw();
+		});
 		this.getDomNode().css({"width" : "" + this.width().toString() + "px"});
 		this.getDomNode().css({"height": "" + this.height().toString() + "px"});
 	}
@@ -144,10 +214,13 @@
 	}
 	exports.dom = {};
 	exports.dom.appendToDom = appendToDom;
+	exports.dom.SelectAllDom = SelectAllDom;
+	exports.dom.ClearAllDom = ClearAllDom;
 	exports.dom.BPMCalculatorDom = BPMCalculatorDom;
 	exports.dom.BPMSyncDom = BPMSyncDom;
 	exports.dom.SamplePreviewDom = SamplePreviewDom;
 	exports.dom.SampleSelectorDom = SampleSelectorDom;
+	exports.dom.SampleMuteDom = SampleMuteDom;
 	exports.dom.ButtonDom = ButtonDom;
 	exports.dom.SampleTrackDom = SampleTrackDom;
 	exports.dom.GridDom = GridDom;

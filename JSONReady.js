@@ -1,4 +1,4 @@
-(function(exports){
+;(function(exports){
 	var JSONReady = function(grid) {
 		this.trackLength = grid ? grid.tracks.length : 8;
 		this.numTracks = grid ? grid.numTracks : 8;

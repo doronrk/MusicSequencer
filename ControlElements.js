@@ -67,8 +67,10 @@ var SampleSelectorControl = function(sampleSelector) {
 	var self = this;
 	this.sampleSelector.domElement.getDomNode().bind("change", function (e)
 	{
-		var file = self.sampleSelector.domElement.domNode.val();
-		self.sampleSelector.sampleTrack.reloadSample(file);
+		var file = self.sampleSelector.domElement.getDomNode().val();
+		file = file.replace(/^.*\\/i, "");
+		file = file.replace("samples/", "");
+		self.sampleSelector.sampleTrack.reloadAudio(file);
 		console.log(file);
 	});
 }

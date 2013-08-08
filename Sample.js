@@ -1,10 +1,9 @@
 ;(function(exports) {	
 	var Sample = function(fname, sampleTrack) {
-		// why sampleTrack ref argument instead of this.sampleTrack = sampleTrack
-		// why var audio vs. this.audio
 		var audio = $("<audio controls><source src='" + sampleTrack.fname + "' type ='audio/mpeg'></audio>");
 		var prevAudio = audio;
 		this.play = function () {
+			audio = $("<audio controls><source src='" + sampleTrack.fname + "' type ='audio/mpeg'></audio>");
 			if (sampleTrack.on) {
 				if (sampleTrack.retrigger) {
 					prevAudio.get(0).pause();

@@ -9,7 +9,6 @@
 		this.transportbpm = gridJSON.bpm;
 		this.BPMCalculator = new BPMCalculator(this);
 		this.tracks = [];
-		// this.numTracks vs. numTracks : when do you choose to bind something to the instance?
 		for (var track = 0; track < this.numTracks; track++) {
 			var newSampleTrack = new SampleTrack(track, this.numBeats, this);
 			this.tracks.push(newSampleTrack);
@@ -23,7 +22,6 @@
 		$("#bpm").val(this.transport.bpm);
 		$("#numTracks").val(this.numTracks);
 		$("#numBeats").val(this.numBeats);
-		// had to remove for eaches since not all tracks are drawn each time
 		this.domElement.draw();
 		this.getBeat = function(beat) {
 			buttons = [];
@@ -61,16 +59,18 @@
 		}
 		var self = this;
 		this.handleBpm= function(bpm) {
-			self.transport.bpm = bpm;
-			var displayBpm = Math.round(bpm * 100)/100;
-			$("#bpm").val(displayBpm);
-			if (self.transport.on) {
-				self.transport.initStepper();
+			if (10 < bpm && bpm < 1000) {
+				self.transport.bpm = bpm;
+				var displayBpm = Math.round(bpm * 100)/100;
+				$("#bpm").val(displayBpm);
+				if (self.transport.on) {
+					self.transport.initStepper();
+				}
 			}
 		}
 		this.handleResize = function(newTracks, newBeats) {
 			this.transport.stopHandle();
-			this.transport.restartHandle();
+			// this.transport.restartHandle();
 			// create new tracks
 			for (var track = this.tracks.length; track < newTracks; track++) {
 				var newSampleTrack = new SampleTrack(track, this.numBeats, this);
@@ -85,7 +85,6 @@
 			}
 			// hide previously visible tracks
 			for (var track = newTracks; track < this.tracks.length; track++) {
-				console.log("hide previous tracks");
 				this.tracks[track].domElement.getDomNode().hide();
 			}
 			// create new beats
@@ -94,27 +93,25 @@
 				for (var track = 0; track < this.tracks.length; track++) {
 					var thisTrack = this.tracks[track];
 					var newButton = new Button(track, beat, thisTrack);
-					AppendDoms(thisTrack, newButton);
 					thisTrack.buttons.push(newButton);
 				}
 			}
 			// draw visible buttons
 			for (var beat = 0; beat < this.numBeats; beat++) {
-				console.log("draw visible buttons");
 				this.getBeat(beat).forEach(function (button) {
 					button.domElement.getDomNode().show();
 				});
 			}
 			// hide previously visible buttons
 			for (var beat = this.numBeats; beat < this.tracks[0].buttons.length; beat++) {
-				console.log("hide buttons");
 				this.getBeat(beat).forEach(function (button) {
 					button.domElement.getDomNode().hide();
 				});
 			}
 			this.domElement.draw();
-			// afterresizing, width of sample tracks is off
+			this.transport.restartHandle();
 		}
+		this.highlightBeat(0, true);
 	}
 	exports.Grid = Grid;
 }(this));	

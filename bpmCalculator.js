@@ -13,6 +13,9 @@
 			var time = s * 1000 + ms;
 			if (this.currentlyCalcuating) {
 				var delta = time - this.prevClick;
+				if (delta < 0) {
+					return;
+				}
 				this.prevClick = time;
 				console.log(this.bpm, this.deltas);
 				if (delta > 2000) {

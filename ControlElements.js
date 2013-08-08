@@ -65,12 +65,11 @@ var SamplePreviewControl = function(samplePreview) {
 var SampleSelectorControl = function(sampleSelector) {
 	this.sampleSelector = sampleSelector;
 	var self = this;
-	this.sampleSelector.domElement.getDomNode().bind("change", function (e)
-	{
+	this.sampleSelector.domElement.getDomNode().change(function (e)
+	{	
 		var file = self.sampleSelector.domElement.getDomNode().val();
-		file = file.replace(/^.*\\/i, "");
-		file = file.replace("samples/", "");
+		// file = file.replace(/^.*\\/i, "");
+		// file = file.replace("samples/", "");
 		self.sampleSelector.sampleTrack.reloadAudio(file);
-		console.log(file);
 	});
 }

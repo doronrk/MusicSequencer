@@ -28,6 +28,7 @@ var SampleTrack = function(track, numBeats, grid) {
 }
 SampleTrack.prototype.reloadAudio = function(fname) {
 	this.fname = "samples/" + fname;
+	this.sample.reloadAudio();
 	this.samplePreview.domElement.redraw();
 }
 SampleTrack.prototype.handleSelectAll = function() {
